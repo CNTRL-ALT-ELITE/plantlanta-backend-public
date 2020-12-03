@@ -1,0 +1,3 @@
+type Mutation {
+  adminSignIn(password: String): Boolean
+}

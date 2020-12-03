@@ -1,0 +1,9 @@
+type Mutation {
+  createDonationPaymentIntent(donateAmount: Int): String!
+  onDonationSuccess(
+    name: String
+    email: String
+    donateAmount: Int
+    paymentIntentID: String
+  ): String!
+}

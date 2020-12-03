@@ -1,0 +1,71 @@
+type Mutation {
+  validateShippingAddress(address: AddressInput!): ValidateAddressResult
+  createOrderPaymentIntent(total: Int): String!
+  createOrder(order: OrderInput!): String!
+}
+
+type Query {
+  getOrders: [Order!]!
+}
+
+input AddressInput {
+  postal_code: String
+  city_locality: String
+  state_province: String
+  address1: String
+  address2: String
+  name: String
+  phone: String
+}
+
+input OrderInput {
+  address: AddressInput
+  name: String
+  email: String
+  cartAmount: Int
+  shippingAmount: Int
+  shippingRateID: String
+  paymentIntentID: String
+  cart: [CartItem]
+}
+
+input CartItem {
+  item: ID
+  quantity: Int
+}
+
+type ValidateAddressResult {
+  address: Address
+  error: String
+  shippingRateID: String
+  shipping_cents: Int
+}
+
+type Address {
+  postal_code: String
+  city_locality: String
+  state_province: String
+  address1: String
+  address2: String
+  name: String
+  phone: String
+}
+
+type Order {
+  buyer_name: String
+  email: String
+  orderNumber: String
+  price_cents: Int
+  shipping_cents: Int
+  total_price_cents: Int
+  status: String
+  items: [Item]
+  purchased_at: Date
+}
+
+type Item {
+  item: ShopItem
+  quantity: Int
+}
+
+scalar Date

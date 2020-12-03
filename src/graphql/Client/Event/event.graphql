@@ -1,0 +1,41 @@
+type Mutation {
+  createNewEvent(event: EventInput!): Event
+  updateExistingEvent(event: EventInput!, id: ID!): Boolean
+  removeExistingEvent(id: ID!): Boolean
+  updateEventImage(id: ID!, imageURL: String!): Boolean
+  updateEventAdditionalImages(id: ID!, imageURLs: [String!]!): Boolean
+  newSignup(id: ID!, name: String, email: String): SignUpResponse
+}
+
+type Query {
+  getEvents: [Event!]!
+}
+
+type Event {
+  id: ID!
+  name: String!
+  description: String!
+  ticketAvailability: String!
+  eventDate: Date
+  original_image_url: String
+  additional_pictures: [String]
+}
+
+type Attendee {
+  name: String!
+  email: String!
+}
+
+type SignUpResponse {
+  success: Boolean
+  error: String
+}
+
+input EventInput {
+  name: String!
+  description: String
+  ticketAvailability: String!
+  eventDate: Date
+}
+
+scalar Date

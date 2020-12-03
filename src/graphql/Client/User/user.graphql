@@ -1,0 +1,12 @@
+type User {
+  name: String
+  email: String
+}
+
+type Query {
+  fetchUser: User
+}
+
+type Mutation {
+  newUserSignup(name: String, email: String): String
+}

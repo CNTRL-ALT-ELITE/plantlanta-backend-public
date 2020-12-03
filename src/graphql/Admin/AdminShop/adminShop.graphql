@@ -1,0 +1,27 @@
+type Mutation {
+  createNewShopItem(shopItem: ShopItemInput!): ShopItem
+  updateExistingShopItem(shopItem: ShopItemInput!, id: ID!): Boolean
+  removeExistingShopItem(id: ID!): Boolean
+  updateShopItemImage(id: ID!, imageURL: String!): Boolean
+  updateShopItemAdditionalImages(id: ID!, imageURLs: [String!]!): Boolean
+}
+
+type Query {
+  getShopItems: [ShopItem!]!
+}
+
+type ShopItem {
+  id: ID!
+  name: String!
+  description: String!
+  price: Int
+  quantity: Int
+  original_image_url: String
+}
+
+input ShopItemInput {
+  name: String!
+  description: String
+  price: Int
+  quantity: Int
+}
